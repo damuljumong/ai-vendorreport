@@ -1,7 +1,6 @@
 import streamlit as st
+from langchain.chat_models import ChatOpenAI
 from langchain.llms import CTransformers
-from dotenv import load_dotenv
-load_dotenv()
 import os
 import OpenDartReader
 import openpyxl
@@ -14,13 +13,9 @@ def main():
 
         button(username="damuljumong", floating=True, width=221)
 
-        llm = CTransformers(
-            model="llama-2-7b-chat.ggmlv3.q2_K.bin",
-            # model="llama-2-7b-chat.ggmlv3.q8_0.bin",
-            model_type="llama"
-        )
+        chat_model = ChatOpenAI()
 
-        api_key = os.getenv("API_KEY_DART")
+        api_key = API_KEY_DART
         dart = OpenDartReader(api_key) 
 
         st.title('국내 업체 경영현황 보고서')
@@ -33,19 +28,8 @@ def main():
         vendorinfo_records = []
 
         stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예 삼성전자 Stock code 005930,072130,078000,069410',key='stock_codes_input_1')
-        # if st.button("종료"):  # 사용자가 종료 버튼을 누르면 루프 종료
-        #     break
         if stock_codes_input:
-            # Split input into individual stock codes
             stock_codes = [code.strip() for code in stock_codes_input.split(',')]
-
-            # Process and display data for each stock code
-            # for symbol in stock_codes:
-            #     st.subheader(f"Stock Code: {symbol}")
-        #         result = fetch_company_data(stock_code)
-        #         st.write(result)
-        # else:
-        #     st.info("Enter stock codes above and click the 'Process' button.")
 
         content = st.text_input('인공지능이 분석할 업체명을 입력하세요.')
 
@@ -171,7 +155,19 @@ def main():
                     # 데이터프레임 출력
                     st.dataframe(combined_df, width=1200)
 
-            result = llm.predict(" Vendor Report " + content + ": ")
+                    # Event 
+                    # dart.event(corp, event, start=None, end=None)
+                    # 조회가능한 주요사항 항목: 
+                    # ['부도발생', '영업정지', '회생절차', '해산사유', '유상증자', '무상증자', '유무상증자', '감자', '관리절차개시', '소송', '해외상장결정', '해외상장폐지결정', '해외상장', '해외상장폐지', '전환사채발행', '신주인수권부사채발행', '교환사채발행', '관리절차중단', '조건부자본증권발행', '자산양수도', '타법인증권양도', '유형자산양도', '유형자산양수', '타법인증권양수', '영업양도', '영업양수', '자기주식취득신탁계약해지', '자기주식취득신탁계약체결', '자기주식처분', '자기주식취득', '주식교환', '회사분할합병', '회사분할', '회사합병', '사채권양수', '사채권양도결정']
+                    vn_event =  ['부도발생', '영업정지', '회생절차', '해산사유', '유상증자', '무상증자', '유무상증자', '감자', '관리절차개시', '소송', '해외상장결정', '해외상장폐지결정', '해외상장', '해외상장폐지', '전환사채발행', '신주인수권부사채발행', '교환사채발행', '관리절차중단', '조건부자본증권발행', '자산양수도', '타법인증권양도', '유형자산양도', '유형자산양수', '타법인증권양수', '영업양도', '영업양수', '자기주식취득신탁계약해지', '자기주식취득신탁계약체결', '자기주식처분', '자기주식취득', '주식교환', '회사분할합병', '회사분할', '회사합병', '사채권양수', '사채권양도결정']
+                    for each_event in vn_event:
+                        issues = dart.event(symbol, each_event) #
+                        if not issues.empty:
+                            st.write(each_event)
+                            st.dataframe(issues, width=1200)
+            st.write("인공지능 ( Open AI )이 분석한 기업 정보를 알려드립니다")
+            result = chat_model.predict(content + "을 분석해줘")    # OpenAI sknam
+
             st.write(result)
 
 if __name__ == '__main__':
