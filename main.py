@@ -11,8 +11,19 @@ def main():
 
     # while True:  # 무한 루프 시작
 
-        button(username="damuljumong", floating=True, width=221)
-
+        # button(username="damuljumong", floating=True, width=221)
+        # Buy Me a Coffee HTML 코드
+        tossme_button = """        
+        <div style="position: absolute; bottom: 10px; right: 10px;">
+            <a href="https://toss.me/damulcandy" target="_blank">
+                <img src="https://harlequin-national-unicorn-728.mypinata.cloud/ipfs/QmNj9VLSE1GpoP4sS9q8TMwbRh6FS9XWTTFNx8hUr4L9AW/buybeer_50.png" alt="insert coin" style="height: 50px !important;width: 50px !important;" >
+            </a>
+        </div>
+        """
+        
+        # Streamlit 앱에 HTML 삽입
+        st.write(tossme_button, unsafe_allow_html=True)
+    
         chat_model = ChatOpenAI()
 
         #api_key = 'API_KEY_DART'
