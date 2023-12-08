@@ -24,11 +24,18 @@ def main():
         # Streamlit 앱에 HTML 삽입
         st.write(tossme_button, unsafe_allow_html=True)
     
+        # HTML 코드를 직접 추가
+        html_code = """
         <ins class="kakao_ad_area" style="display:none;"
-        data-ad-unit = "DAN-BVSIspEij6yfBT9F"
-        data-ad-width = "320"
-        data-ad-height = "100"></ins>
+        data-ad-unit="DAN-BVSIspEij6yfBT9F"
+        data-ad-width="320"
+        data-ad-height="100"></ins>
         <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+        """
+        
+        # streamlit 앱에 HTML 코드 추가
+        st.write(html_code, unsafe_allow_html=True)
+
 
         chat_model = ChatOpenAI()
 
