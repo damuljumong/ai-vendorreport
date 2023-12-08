@@ -205,5 +205,18 @@ def main():
             
             # streamlit 앱에 HTML 코드 추가
             st.write(html_code, unsafe_allow_html=True)
+
+            # HTML 코드를 직접 추가
+            html_code = """
+            <ins class="kakao_ad_area" style="display:none;"
+            data-ad-unit = "DAN-Cj03yMbg1chnAq9T"
+            data-ad-width = "300"
+            data-ad-height = "250"></ins>
+            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+            """
+            
+            # streamlit 앱에 HTML 코드 추가
+            st.write(html_code, unsafe_allow_html=True)
+        
 if __name__ == '__main__':
     main()
