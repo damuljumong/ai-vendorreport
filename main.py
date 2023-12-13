@@ -193,28 +193,20 @@ def main():
 
             st.write(result)
             # HTML 코드를 직접 추가
-            adhtml_code = """
-            <ins class="kakao_ad_area" style="display:none;"
-            data-ad-unit="DAN-BVSIspEij6yfBT9F"
-            data-ad-width="320"
-            data-ad-height="100"></ins>
-            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-            """
-            
-            # streamlit 앱에 HTML 코드 추가
-            st.write(adhtml_code, unsafe_allow_html=True)
-
-            # HTML 코드를 직접 추가
-            adhtml_code = """
-            <ins class="kakao_ad_area" style="display:none;"
-            data-ad-unit = "DAN-BVSIspEij6yfBT9F"
-            data-ad-width = "320"
-            data-ad-height = "100"></ins>
-            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-            """
-            
-            # streamlit 앱에 HTML 코드 추가
-            st.write(adhtml_code, unsafe_allow_html=True)
-        
+            # 광고 코드 중복 추가 방지
+            if not st.session_state.get("ad_added", False):
+                adhtml_code2 = """
+                <ins class="kakao_ad_area" style="display:none;"
+                data-ad-unit="DAN-BVSIspEij6yfBT9F"
+                data-ad-width="320"
+                data-ad-height="100"></ins>
+                <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+                """
+                
+                # streamlit 앱에 HTML 코드 추가
+                st.write(adhtml_code2, unsafe_allow_html=True)
+        # 광고가 이미 추가되었음을 표시
+                st.session_state.ad_added = True
+       
 if __name__ == '__main__':
     main()
