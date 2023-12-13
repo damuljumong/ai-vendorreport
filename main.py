@@ -10,7 +10,18 @@ from streamlit_extras.buy_me_a_coffee import button
 def main():
 
     # while True:  # 무한 루프 시작
-
+        
+        # HTML 코드를 직접 추가
+        adhtml_code = """
+        <ins class="kakao_ad_area" style="display:none;"
+        data-ad-unit="DAN-BVSIspEij6yfBT9F"
+        data-ad-width="320"
+        data-ad-height="100"></ins>
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+        """
+        # streamlit 앱에 HTML 코드 추가
+        st.write(adhtml_code, unsafe_allow_html=True)
+    
         # button(username="damuljumong", floating=True, width=221)
         # Buy Me a Coffee HTML 코드
         tossme_button = """        
@@ -24,18 +35,6 @@ def main():
         # Streamlit 앱에 HTML 삽입
         st.write(tossme_button, unsafe_allow_html=True)
     
-        # HTML 코드를 직접 추가
-        adhtml_code = """
-        <ins class="kakao_ad_area" style="display:none;"
-        data-ad-unit="DAN-BVSIspEij6yfBT9F"
-        data-ad-width="320"
-        data-ad-height="100"></ins>
-        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-        """
-        # streamlit 앱에 HTML 코드 추가
-        st.write(adhtml_code, unsafe_allow_html=True)
-
-
         chat_model = ChatOpenAI()
 
         #api_key = 'API_KEY_DART'
