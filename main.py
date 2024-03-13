@@ -1,6 +1,6 @@
 import streamlit as st
 from langchain.chat_models import ChatOpenAI
-from langchain.llms import CTransformers
+#from langchain.llms import CTransformers
 import os
 import OpenDartReader
 
