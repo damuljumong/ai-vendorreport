@@ -10,7 +10,7 @@ from streamlit_extras.buy_me_a_coffee import button
 def main():
 
     # while True:  # 무한 루프 시작
-        
+        st.set_page_config(page_title='VendorReport', page_icon = 'buybeer_30.png', initial_sidebar_state = 'auto')
         # HTML 코드를 직접 추가
         adhtml_code = """
         <ins class="kakao_ad_area" style="display:none;"
