@@ -7,6 +7,7 @@ import OpenDartReader
 import pandas as pd
 from streamlit_extras.buy_me_a_coffee import button
 import yfinance as yf
+from datetime import datetime, timedelta
 
 def main():
 
@@ -46,6 +47,9 @@ def main():
 
         stock_codes_input = "005930,072130,078000,069410" # 삼성전자 , 유엔젤, 텔코웨어 엔텔스 
         symbol = "005930"
+    
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=365 * 5)  # 5년간의 데이터
 
         year = 2023
         financial_records = []
@@ -190,8 +194,8 @@ def main():
                             st.write(each_event)
                             st.dataframe(issues, width=1200)
                 #stock = 'AAPL'
-                start_date = '2020-01-01'
-                end_date = '2021-01-01'
+                #start_date = '2020-01-01'
+                #end_date = '2021-01-01'
                 data = yf.download(symbol, start=start_date, end=end_date) 
                 st.dataframe(data, width=1200)
             st.write("인공지능 ( Open AI )이 분석한 기업 정보를 알려드립니다")
