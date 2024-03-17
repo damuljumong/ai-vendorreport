@@ -6,6 +6,7 @@ import OpenDartReader
 
 import pandas as pd
 from streamlit_extras.buy_me_a_coffee import button
+import yfinance as yf
 
 def main():
 
@@ -188,6 +189,11 @@ def main():
                         if not issues.empty:
                             st.write(each_event)
                             st.dataframe(issues, width=1200)
+                #stock = 'AAPL'
+                start_date = '2020-01-01'
+                end_date = '2021-01-01'
+                data = yf.download(symbol, start=start_date, end=end_date) 
+                st.dataframe(data, width=1200)
             st.write("인공지능 ( Open AI )이 분석한 기업 정보를 알려드립니다")
             result = chat_model.predict(content + "을 분석해줘")    # OpenAI sknam
 
