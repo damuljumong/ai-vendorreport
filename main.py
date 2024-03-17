@@ -197,8 +197,9 @@ def main():
                     #start_date = '2020-01-01'
                     #end_date = '2021-01-01'
                     #data = yf.download(symbol, start=start_date, end=end_date) 
-                    data = fdr.DataReader(symbol,start=start_date, end=end_date)
-                    st.dataframe(data, width=1200)
+                    #data =https://api.finance.naver.com/siseJson.naver?symbol=005930&requestType=1&startTime=20190624&endTime=20240315&timeframe=day
+                    #data = fdr.DataReader(symbol,start=start_date, end=end_date)
+                    #st.dataframe(data, width=1200)
             st.write("인공지능 ( Open AI )이 분석한 기업 정보를 알려드립니다")
             result = chat_model.predict(content + "을 분석해줘")    # OpenAI sknam
 
