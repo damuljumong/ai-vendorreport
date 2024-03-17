@@ -3,3 +3,4 @@ openai
 OpenDartReader
 streamlit-extras
 yfinance
+datetime
