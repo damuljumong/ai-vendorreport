@@ -66,22 +66,22 @@ def main():
         uploaded_file = st.file_uploader("문서 파일을 올려주세요!", type=['xlsx'])
 
         if uploaded_file is not None:
-        # Temporary directory for file processing
-        temp_dir = tempfile.TemporaryDirectory()
-        temp_filepath = os.path.join(temp_dir.name, uploaded_file.name)
-        with open(temp_filepath, "wb") as f:
-            f.write(uploaded_file.getvalue())
-    
-        # Determine the file type and process accordingly
-        file_extension = os.path.splitext(uploaded_file.name)[-1].lower()
-        if file_extension == ".xlsx":
-            # Process xlsx file
-            wb = openpyxl.load_workbook(temp_filepath)
-            text = ""
-            for sheet_name in wb.sheetnames:
-                sheet = wb[sheet_name]
-                for row in sheet.iter_rows(values_only=True):
-                    text += " ".join(str(cell) for cell in row if cell is not None) + "\n"
+            # Temporary directory for file processing
+            temp_dir = tempfile.TemporaryDirectory()
+            temp_filepath = os.path.join(temp_dir.name, uploaded_file.name)
+            with open(temp_filepath, "wb") as f:
+                f.write(uploaded_file.getvalue())
+        
+            # Determine the file type and process accordingly
+            file_extension = os.path.splitext(uploaded_file.name)[-1].lower()
+            if file_extension == ".xlsx":
+                # Process xlsx file
+                wb = openpyxl.load_workbook(temp_filepath)
+                text = ""
+                for sheet_name in wb.sheetnames:
+                    sheet = wb[sheet_name]
+                    for row in sheet.iter_rows(values_only=True):
+                        text += " ".join(str(cell) for cell in row if cell is not None) + "\n"
                 
         stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예 삼성전자 Stock code 005930,072130,078000,069410',key='stock_codes_input_1')
         if stock_codes_input:
