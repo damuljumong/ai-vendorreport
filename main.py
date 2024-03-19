@@ -8,6 +8,7 @@ import pandas as pd
 from streamlit_extras.buy_me_a_coffee import button
 import yfinance as yf
 from datetime import datetime, timedelta
+import openpyxl
 
 def main():
 
@@ -54,6 +55,12 @@ def main():
         year = 2023
         financial_records = []
         vendorinfo_records = []
+    
+        # Streamlit title
+        st.title("Chat PDF docx xlsx")
+        st.write("---")
+        # File upload
+        uploaded_file = st.file_uploader("문서 파일을 올려주세요!", type=['pdf', 'docx', 'xlsx'])
 
         stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예 삼성전자 Stock code 005930,072130,078000,069410',key='stock_codes_input_1')
         if stock_codes_input:
