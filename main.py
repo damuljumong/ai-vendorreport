@@ -77,15 +77,25 @@ def main():
             if file_extension == ".xlsx":
                 # Process xlsx file
                 wb = openpyxl.load_workbook(temp_filepath)
-                text = ""
                 for sheet_name in wb.sheetnames:
                     sheet = wb[sheet_name]
                     for row in sheet.iter_rows(values_only=True):
-                        text += " ".join(str(cell) for cell in row if cell is not None) + "\n"
+                        # 모든 열의 값 추가
+                        row_values = [str(cell) for cell in row if cell is not None]  # None이 아닌 셀 값만 포함
+                        stock_codes_input += ",".join(row_values) + ","
+        
+                stock_codes_input = stock_codes_input.rstrip(",")  # 마지막 쉼표 제거
+        
+        # 사용자가 직접 입력한 stock codes와 엑셀에서 읽어들인 코드를 모두 포함
+        user_stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예: 삼성전자 Stock code 005930,072130,078000,069410', value=stock_codes_input, key='stock_codes_input_1')
+        
+        if user_stock_codes_input:
+            stock_codes = [code.strip() for code in user_stock_codes_input.split(',')]
+    
                 
-        stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예 삼성전자 Stock code 005930,072130,078000,069410',key='stock_codes_input_1')
-        if stock_codes_input:
-            stock_codes = [code.strip() for code in stock_codes_input.split(',')]
+        #stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예 삼성전자 Stock code 005930,072130,078000,069410',key='stock_codes_input_1')
+        #if stock_codes_input:
+        #    stock_codes = [code.strip() for code in stock_codes_input.split(',')]
 
         content = st.text_input('인공지능이 분석할 업체명을 입력하세요.')
 
