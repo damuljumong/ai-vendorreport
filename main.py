@@ -98,7 +98,7 @@ def main():
         #if stock_codes_input:
         #    stock_codes = [code.strip() for code in stock_codes_input.split(',')]
 
-        content = st.text_input('인공지능이 분석할 업체명을 입력하세요.')
+        #content = st.text_input('인공지능이 분석할 업체명을 입력하세요.')
 
         if st.button('업체 분석 요청'):
             with st.spinner('업체 리포트 작성 중...'):
@@ -239,10 +239,9 @@ def main():
                     #data =https://api.finance.naver.com/siseJson.naver?symbol=005930&requestType=1&startTime=20190624&endTime=20240315&timeframe=day
                     #data = fdr.DataReader(symbol,start=start_date, end=end_date)
                     #st.dataframe(data, width=1200)
-            st.write("인공지능 ( Open AI )이 분석한 기업 정보를 알려드립니다")
-            result = chat_model.predict(content + "을 분석해줘")    # OpenAI sknam
-
-            st.write(result)
+            #st.write("인공지능 ( Open AI )이 분석한 기업 정보를 알려드립니다")
+            #result = chat_model.predict(content + "을 분석해줘")    # OpenAI sknam
+            #st.write(result)
             # HTML 코드를 직접 추가
             # 광고 코드 중복 추가 방지
             if not st.session_state.get("ad_added", False):
