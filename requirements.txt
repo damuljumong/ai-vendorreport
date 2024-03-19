@@ -4,3 +4,4 @@ OpenDartReader
 streamlit-extras
 yfinance
 datetime
+openpyxl
