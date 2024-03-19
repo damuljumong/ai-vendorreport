@@ -6,4 +6,4 @@ yfinance
 datetime
 openpyxl
 pypdf
-docx
+
