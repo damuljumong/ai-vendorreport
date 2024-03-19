@@ -60,10 +60,10 @@ def main():
         vendorinfo_records = []
     
         # Streamlit title
-        st.title("Chat xlsx")
+        st.title("조회할 모든 업체 리스트(STOCK CODE)를 엑셀문서 xlsx 표준 포맷으로 한번에 모든 업체를 조회하세요")
         st.write("---")
         # File upload
-        uploaded_file = st.file_uploader("문서 파일을 올려주세요!", type=['xlsx'])
+        uploaded_file = st.file_uploader(" .xlsx 형식의 엑셀 문서 파일을 올려주세요!", type=['xlsx'])
 
         stock_codes_input = ""  # 초기값 설정
         
