@@ -65,6 +65,8 @@ def main():
         # File upload
         uploaded_file = st.file_uploader("문서 파일을 올려주세요!", type=['xlsx'])
 
+        stock_codes_input = ""  # 초기값 설정
+        
         if uploaded_file is not None:
             # Temporary directory for file processing
             temp_dir = tempfile.TemporaryDirectory()
@@ -75,19 +77,18 @@ def main():
             # Determine the file type and process accordingly
             file_extension = os.path.splitext(uploaded_file.name)[-1].lower()
             if file_extension == ".xlsx":
-                # Process xlsx file
+                # Process xlsx file, 첫 번째 시트의 첫 번째 열만 처리
                 wb = openpyxl.load_workbook(temp_filepath)
-                for sheet_name in wb.sheetnames:
-                    sheet = wb[sheet_name]
-                    for row in sheet.iter_rows(values_only=True):
-                        # 모든 열의 값 추가
-                        row_values = [str(cell) for cell in row if cell is not None]  # None이 아닌 셀 값만 포함
-                        stock_codes_input += ",".join(row_values) + ","
+                sheet = wb[wb.sheetnames[0]]  # 첫 번째 시트
+                for row_index, row in enumerate(sheet.iter_rows(values_only=True), start=1):
+                    # 첫 번째 행을 제외하고 처리
+                    if row_index > 1 and row[0]:  # 2번째 행부터, 첫 번째 열이 비어 있지 않은 경우에만 추가
+                        stock_codes_input += str(row[0]) + ","
         
                 stock_codes_input = stock_codes_input.rstrip(",")  # 마지막 쉼표 제거
         
-        # 사용자가 직접 입력한 stock codes와 엑셀에서 읽어들인 코드를 모두 포함
-        user_stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예: 삼성전자 Stock code 005930,072130,078000,069410', value=stock_codes_input, key='stock_codes_input_1')
+        # 사용자 입력 필드에 읽어들인 주식 코드 표시
+        user_stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예: 삼성전자 Stock code 005930', value=stock_codes_input, key='stock_codes_input_1')
         
         if user_stock_codes_input:
             stock_codes = [code.strip() for code in user_stock_codes_input.split(',')]
