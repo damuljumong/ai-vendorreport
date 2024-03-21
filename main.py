@@ -60,7 +60,7 @@ def main():
         vendorinfo_records = []
     
         # Streamlit title
-        st.title("조회할 모든 업체 리스트(STOCK CODE)를 엑셀문서 xlsx 표준 포맷으로 한번에 모든 업체를 조회하세요")
+        st.write("조회할 모든 업체 리스트(STOCK CODE)를 엑셀문서 xlsx 표준 포맷으로 한번에 모든 업체를 조회하세요")
         st.write("---")
         # File upload
         uploaded_file = st.file_uploader(" .xlsx 형식의 엑셀 문서 파일을 올려주세요!", type=['xlsx'])
@@ -88,7 +88,7 @@ def main():
                 stock_codes_input = stock_codes_input.rstrip(",")  # 마지막 쉼표 제거
         
         # 사용자 입력 필드에 읽어들인 주식 코드 표시
-        user_stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예: 삼성전자 Stock code 005930', value=stock_codes_input, key='stock_codes_input_1')
+        user_stock_codes_input = st.text_input('업체 Stock code를 입력하세요. 예: 삼성전자 Stock code 005930,072130,078000,069410', value=stock_codes_input, key='stock_codes_input_1')
         
         if user_stock_codes_input:
             stock_codes = [code.strip() for code in user_stock_codes_input.split(',')]
