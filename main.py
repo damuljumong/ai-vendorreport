@@ -104,6 +104,7 @@ def main():
             with st.spinner('업체 리포트 작성 중...'):
                 for symbol in stock_codes:
                     # 회사명에  포함된 회사들에 대한 개황정보
+                    st.write("---")
                     vendorInfo = dart.company(symbol)
                     # excel_filename = f'./files/{symbol}_vendorInfo.xlsx'
                     # vendorInfo.to_excel(excel_filename, index=False)             
