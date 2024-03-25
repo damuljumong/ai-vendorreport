@@ -243,8 +243,8 @@ def main():
                     #data = fdr.DataReader(symbol,start=start_date, end=end_date)
                     #st.dataframe(data, width=1200)
             
-                    data = fdr.DataReader(symbol, "2011-01-01", "2024-02-30")
-                    st.dataframe(data, width=1200)
+                    #data = fdr.DataReader(symbol, "2011-01-01", "2024-02-30")
+                    #st.dataframe(data, width=1200)
             
             #st.write("인공지능 ( Open AI )이 분석한 기업 정보를 알려드립니다")
             #result = chat_model.predict(content + "을 분석해줘")    # OpenAI sknam
