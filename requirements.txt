@@ -6,4 +6,3 @@ yfinance
 datetime
 openpyxl
 pypdf
-FinanceDataReader
