@@ -3,6 +3,7 @@ from langchain.chat_models import ChatOpenAI
 #from langchain.llms import CTransformers
 import os
 import OpenDartReader
+import FinanceDataReader as fdr
 
 import pandas as pd
 from streamlit_extras.buy_me_a_coffee import button
@@ -105,6 +106,10 @@ def main():
                 for symbol in stock_codes:
                     # 회사명에  포함된 회사들에 대한 개황정보
                     st.write("---")
+                    
+                    data = fdr.DataReader(symbol,start=start_date, end=end_date)
+                    st.dataframe(data, width=1200)
+                    
                     vendorInfo = dart.company(symbol)
                     # excel_filename = f'./files/{symbol}_vendorInfo.xlsx'
                     # vendorInfo.to_excel(excel_filename, index=False)             
