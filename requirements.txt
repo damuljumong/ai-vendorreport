@@ -1,7 +1,7 @@
 langchain
 openai
-finance-datareader
 OpenDartReader
+finance-datareader
 streamlit-extras
 yfinance
 datetime
