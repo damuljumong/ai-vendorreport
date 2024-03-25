@@ -1,6 +1,6 @@
 langchain
 openai
-FinanceDatareader
+Finance-DataReader
 OpenDartReader
 streamlit-extras
 yfinance
