@@ -13,7 +13,7 @@ import openpyxl
 import tempfile
 #import docx
 
-import FinanceDataReader as fdr
+#import FinanceDataReader as fdr
 
 def main():
 
