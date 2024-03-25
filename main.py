@@ -2,9 +2,8 @@ import streamlit as st
 from langchain.chat_models import ChatOpenAI
 #from langchain.llms import CTransformers
 import os
-import OpenDartReader
 import FinanceDataReader as fdr
-
+import OpenDartReader
 import pandas as pd
 from streamlit_extras.buy_me_a_coffee import button
 import yfinance as yf
