@@ -13,6 +13,8 @@ import openpyxl
 import tempfile
 #import docx
 
+import FinanceDataReader as fdr
+
 def main():
 
     # while True:  # 무한 루프 시작
@@ -240,9 +242,15 @@ def main():
                     #data =https://api.finance.naver.com/siseJson.naver?symbol=005930&requestType=1&startTime=20190624&endTime=20240315&timeframe=day
                     #data = fdr.DataReader(symbol,start=start_date, end=end_date)
                     #st.dataframe(data, width=1200)
+            
+                    data = fdr.DataReader(symbol, "2011-01-01", "2024-02-30")
+                    st.dataframe(data, width=1200)
+            
             #st.write("인공지능 ( Open AI )이 분석한 기업 정보를 알려드립니다")
             #result = chat_model.predict(content + "을 분석해줘")    # OpenAI sknam
             #st.write(result)
+            
+            
             # HTML 코드를 직접 추가
             # 광고 코드 중복 추가 방지
             if not st.session_state.get("ad_added", False):
