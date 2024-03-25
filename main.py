@@ -13,8 +13,6 @@ import openpyxl
 import tempfile
 #import docx
 
-#import FinanceDataReader as fdr
-
 def main():
 
     # while True:  # 무한 루프 시작
